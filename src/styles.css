@@ -1,0 +1,353 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-solar: var(--solar);
+  --color-space: var(--space);
+  --color-mars: var(--mars);
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(0.05 0.01 280);
+  --foreground: oklch(0.97 0.005 250);
+  --card: oklch(0.08 0.015 270 / 0.85);
+  --card-foreground: oklch(0.97 0.005 250);
+  --popover: oklch(0.08 0.015 270 / 0.95);
+  --popover-foreground: oklch(0.97 0.005 250);
+  --primary: oklch(0.82 0.16 80);
+  --primary-foreground: oklch(0.15 0.02 270);
+  --secondary: oklch(0.18 0.02 270);
+  --secondary-foreground: oklch(0.97 0.005 250);
+  --muted: oklch(0.15 0.015 270);
+  --muted-foreground: oklch(0.65 0.02 260);
+  --accent: oklch(0.6 0.18 250);
+  --accent-foreground: oklch(0.97 0.005 250);
+  --destructive: oklch(0.55 0.22 30);
+  --destructive-foreground: oklch(0.97 0.005 250);
+  --border: oklch(1 0 0 / 0.1);
+  --input: oklch(1 0 0 / 0.08);
+  --ring: oklch(0.82 0.16 80);
+  --solar: oklch(0.82 0.16 80);
+  --space: oklch(0.6 0.18 250);
+  --mars: oklch(0.55 0.18 35);
+}
+
+.dark { color-scheme: dark; }
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html, body, #root { height: 100%; }
+  body {
+    background:
+      radial-gradient(ellipse 120% 80% at 20% 10%, oklch(0.15 0.08 280 / 0.4) 0%, transparent 60%),
+      radial-gradient(ellipse 100% 60% at 80% 20%, oklch(0.12 0.06 320 / 0.3) 0%, transparent 50%),
+      radial-gradient(ellipse 80% 40% at 50% 80%, oklch(0.1 0.05 240 / 0.3) 0%, transparent 50%),
+      radial-gradient(ellipse at top, oklch(0.08 0.03 270) 0%, oklch(0.03 0.01 280) 60%, #030308 100%);
+    background-attachment: fixed;
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+  }
+  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.01em; }
+}
+
+@layer utilities {
+  .glass {
+    background: rgba(10, 10, 15, 0.72);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  }
+  .glass-strong {
+    background: rgba(8, 8, 14, 0.92);
+    backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .panel-glass {
+    background: linear-gradient(180deg, rgba(12, 12, 20, 0.92) 0%, rgba(8, 8, 14, 0.88) 100%);
+    backdrop-filter: blur(16px) saturate(150%);
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  }
+  .text-solar { color: #FDB813; }
+  .text-space { color: #4A90D9; }
+  .text-mars { color: #C1440E; }
+  .font-mono-data { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+  .scrollbar-thin::-webkit-scrollbar { width: 6px; }
+  .scrollbar-thin::-webkit-scrollbar:horizontal { display: none; }
+  .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+  .scrollbar-thin::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+  .scrollbar-invisible::-webkit-scrollbar { width: 0px; height: 0px; }
+  .scrollbar-invisible::-webkit-scrollbar:horizontal { display: none; }
+  .scrollbar-invisible::-webkit-scrollbar-track { background: transparent; }
+  .scrollbar-invisible::-webkit-scrollbar-thumb { background: transparent; }
+  .scrollbar-invisible { scrollbar-width: none; -ms-overflow-style: none; }
+
+  *::-webkit-scrollbar:horizontal { display: none; }
+  * { scrollbar-width: thin; }
+  
+  /* Professional animations */
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes glow {
+    0%, 100% {
+      text-shadow: 0 0 10px rgba(253, 184, 19, 0.3);
+    }
+    50% {
+      text-shadow: 0 0 20px rgba(253, 184, 19, 0.6);
+    }
+  }
+  
+  @keyframes pulse-soft {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+  
+  .animate-slide-in-left {
+    animation: slideInLeft 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  
+  .animate-slide-in-right {
+    animation: slideInRight 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  
+  .animate-slide-in-up {
+    animation: slideInUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite;
+  }
+  
+  .animate-pulse-soft {
+    animation: pulse-soft 2s ease-in-out infinite;
+  }
+  
+  /* Modal gradient background (top-to-bottom, semi-transparent) */
+  .modal-bg {
+    background: linear-gradient(180deg, rgba(12, 12, 22, 0.95) 0%, rgba(8, 8, 16, 0.88) 100%);
+    backdrop-filter: blur(16px) saturate(150%);
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Close button for all panels/modals */
+  .btn-close-modal {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 40;
+    width: 36px;
+    height: 36px;
+    border-radius: 9999px;
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.9);
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .btn-close-modal:hover {
+    background: rgba(220, 50, 50, 0.75);
+    border-color: rgba(220, 50, 50, 0.5);
+    transform: scale(1.12);
+    color: white;
+  }
+  .btn-close-modal:active {
+    transform: scale(0.95);
+  }
+  .btn-close-modal svg {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.2s ease;
+  }
+  .btn-close-modal:hover svg {
+    transform: scale(1.1);
+  }
+
+  /* Button micro-interactions */
+  .btn-solar {
+    @apply transition-all duration-200 ease-out;
+    &:hover {
+      @apply shadow-[0_0_20px_rgba(253,184,19,0.3)];
+    }
+    &:active {
+      @apply scale-95;
+    }
+  }
+  
+  /* Smooth transition for panels */
+  .panel-enter {
+    animation: slideInRight 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  
+  .panel-exit {
+    animation: slideInRight 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) reverse;
+  }
+  
+  /* Focus mode styles */
+  .focus-mode body {
+    @apply blur-none;
+  }
+  
+  /* Glow effect for selected planets */
+  .planet-selected {
+    @apply drop-shadow-[0_0_20px_rgba(253,184,19,0.4)];
+  }
+
+  /* Comparison bar animation */
+  @keyframes barGrow {
+    from { width: 0%; }
+  }
+
+  .comparison-bar {
+    animation: barGrow 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  /* Temperature-based text colors */
+  .text-extreme-hot { color: #FB923C; }
+  .text-hot { color: #FDE047; }
+  .text-extreme-cold { color: #67E8F9; }
+  .text-cold { color: #93C5FD; }
+
+  /* Tooltip accessibility */
+  [data-tooltip] {
+    position: relative;
+    cursor: help;
+  }
+
+  /* Smooth data value transitions */
+  .stat-value {
+    transition: color 0.3s ease;
+  }
+
+  /* Timeline dot pulse */
+  @keyframes dotPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(253, 184, 19, 0.4); }
+    50% { box-shadow: 0 0 0 4px rgba(253, 184, 19, 0); }
+  }
+  .dot-pulse {
+    animation: dotPulse 2s ease-in-out infinite;
+  }
+
+  /* Meteor streak animation */
+  @keyframes meteorStreak {
+    0% { transform: translateX(-100%) translateY(-100%); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateX(100vw) translateY(100vh); opacity: 0; }
+  }
+
+  /* Card entrance staggered */
+  .card-enter {
+    animation: slideInUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+
+  /* Pulse glow for active items */
+  @keyframes glowPulse {
+    0%, 100% { box-shadow: 0 0 5px rgba(253,184,19,0.1); }
+    50% { box-shadow: 0 0 15px rgba(253,184,19,0.2); }
+  }
+  .glow-pulse {
+    animation: glowPulse 2s ease-in-out infinite;
+  }
+
+  /* Rotating orbit decoration */
+  @keyframes orbitRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .orbit-rotate {
+    animation: orbitRotate 20s linear infinite;
+  }
+}
+
